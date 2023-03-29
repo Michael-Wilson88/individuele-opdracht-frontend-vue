@@ -1,27 +1,35 @@
 <template>
   <div class="BandDetails">
-    <h1>{{ bandDetail.bandName }}</h1>
-    <h2>City : {{ bandDetail.city }}</h2>
+    <h1>{{ band.bandName }}</h1>
+    <h2>City : {{ band.city }}</h2>
     <h3>Albums : </h3>
     <ul>
-      <li v-for="album in bandDetail.albums" :key="album.name">{{ album.name }}</li>
+      <li v-for="album in band.albums" :key="album.name">{{ album.name }}</li>
     </ul>
   </div>
 </template>
 
 <script>
 import bandData from "@/data/bandData";
-import {computed} from "vue";
+import {computed, ref} from "vue";
 import {useRoute} from "vue-router";
-
+const bands = [];
 export default {
   name: "BandDetails",
   setup() {
+    const band = ref(null);
     const route = useRoute();
-    const bandDetail = computed(() => {
-      return bandData.filter(b => b.bandName === route.params.code)[0]
-    });
-    return {bandDetail};
+
+    fetch(`http://localhost:3003/api/v1/bands/${route.params.id}`)
+        .then((response) => response.json())
+        .then((data) => {
+          band.value = data;
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+
+    return { band };
   },
 };
 </script>
