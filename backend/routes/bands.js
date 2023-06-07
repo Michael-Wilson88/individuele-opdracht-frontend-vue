@@ -29,7 +29,7 @@ router.post("/createBand", (req, res, next) => {
 });
 
 //Button for creating a band
-router.get("/new-band", (req, res, next) => {
+router.get("/newBand", (req, res, next) => {
     console.log("Route:/ ,bands form");
     res.send(
         '<form action="/bands" method="post">' +
