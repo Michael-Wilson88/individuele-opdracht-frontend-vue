@@ -8,10 +8,10 @@ const bodyParser = require("body-parser");
 router.use(bodyParser.urlencoded({extended: false}));
 router.use(bodyParser.json());
 
-router.get("/bands/:id", (req, res, next) => {
+router.get("/bands/:name", (req, res, next) => {
     res.setHeader("Content-Type", "application/json");
-    const id = parseInt(req.params.id);
-    const band = db.bands.find((a) => a.id === id) || {};
+    const name = req.params.name;
+    const band = db.bands.find((a) => a.bandName === name) || {};
     res.send(JSON.stringify(band, null, 2));
 });
 

@@ -4,7 +4,7 @@
   "bandName": "Primus",
   "city": "San Francisco",
   "genre": "Funk Metal",
-  "image": "../img/logo-primus.png",
+  "image": "../../img/logo-primus.png",
   "albums": [{
     "name": "Pork Soda"
   },
@@ -17,7 +17,7 @@
   "bandName": "Kyuss",
   "city": "Palm Desert",
   "genre": "Stoner Rock",
-  "image": "../img/kyuss2.webp",
+  "image": "../../img/kyuss2.webp",
 
   "albums": [{
     "name": "..And the Circus Leaves Town"
@@ -37,7 +37,7 @@
   "bandName": "Conan",
   "city": "Liverpool",
   "genre": "Doom Metal",
-  "image": "../img/Conan_Logo_Red2.webp",
+  "image": "../../img/Conan_Logo_Red2.webp",
   "albums": [{
     "name": "Evidence of Immortality"
   },
@@ -50,7 +50,7 @@
   "bandName": "Queens of the Stone Age",
   "city": "Palm Desert",
   "genre": "Alternative Rock",
-  "image": "../img/qotsa-logo.jpg",
+  "image": "../../img/qotsa-logo.jpg",
   "albums": [{
     "name": "Queens of the Stone Age"
   },
@@ -69,7 +69,7 @@
   "bandName": "Peter Pan SpeedRock",
   "city": "Eindhoven",
   "genre": "Rock 'n Roll",
-  "image": "../img/peterpanspeedrock-logo.webp",
+  "image": "../../img/peterpanspeedrock-logo.webp",
   "albums": [{
     "name": "Rocketfuel"
   },
@@ -82,7 +82,7 @@
   "bandName": "Wu Tang",
   "city": "Staten Island, New York",
   "genre": "Hip Hop",
-  "image": "../img/WU-TANG-LOGO.avif",
+  "image": "../../img/WU-TANG-LOGO.avif",
   "albums": [{
     "name": "Enter the Wu-Tang"
   },
@@ -95,7 +95,7 @@
   "bandName": "Fela Kuti",
   "city": "Lagos, Nigeria",
   "genre": "Afrobeat",
-  "image": "../img/fela (1).svg",
+  "image": "../../img/fela (1).svg",
   "albums": [{
     "name": "Zombie"
   },
@@ -108,7 +108,7 @@
   "bandName": "Howlin' Wolf",
   "city": "West Point, Mississippi",
   "genre": "Blues",
-  "image": "../img/howlinWolf.jpg",
+  "image": "../../img/howlinWolf.jpg",
   "albums": [{
     "name": "Moanin' in the Moonlight"
   },
@@ -121,7 +121,7 @@
   "bandName": "King Gizzard and the Lizard Wizard",
   "city": "Melbourne, Australia",
   "genre": "Psychedelic Rock",
-  "image": "../img/kgwl-logo.svg",
+  "image": "../../img/kgwl-logo.svg",
   "albums": [{
     "name": "Infest the Rat's Nest!"
   },
@@ -134,7 +134,7 @@
   "bandName": "Orange Goblin",
   "city": "London, UK",
   "genre": "Stoner Rock",
-  "image": "../img/OGLOGO.webp",
+  "image": "../../img/OGLOGO.webp",
   "albums": [{
     "name": "Coup de Grace"
   },
@@ -147,7 +147,7 @@
   "bandName": "Creedence Clearwater Revival",
   "city": "El Cerrito, California",
   "genre": "Rock",
-  "image": "../img/creedence.jpg",
+  "image": "../../img/creedence.jpg",
   "albums": [{
     "name": "Green River"
   },
@@ -160,7 +160,7 @@
   "bandName": "Black Sabbath",
   "city": "Birmingham, Great Britain",
   "genre": "Metal",
-  "image": "../img/Black_Sabbath_logo.jpg",
+  "image": "../../img/Black_Sabbath_logo.jpg",
   "albums": [{
     "name": "Masters of Reality"
   },

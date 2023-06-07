@@ -18,9 +18,9 @@
 </template>
 
 <script>
-import {computed, reactive, ref} from 'vue';
+import {computed, reactive, ref, onMounted} from 'vue';
 import {RouterLink, useRoute} from 'vue-router';
-import bandData from "@/data/bandData";
+import axios from 'axios';
 import Pagination from "@/components/Pagination.vue";
 
 const newData= {
@@ -46,11 +46,11 @@ export default {
     const imagesPerPage = 5;
     const start = (page - 1) * imagesPerPage;
     const end = start + imagesPerPage;
-    const bands = reactive(bandData);
+    const bands = ref([]);
     const sortOrder = ref('asc');
-    const totalPages = computed(() => Math.ceil(bands.length / imagesPerPage));
+    const totalPages = ref(0);
     const bandsPerPage = computed(() => {
-      let sortedBands = [...bands];
+      let sortedBands = [...bands.value];
       if (sortOrder.value === 'asc') {
         sortedBands.sort((a, b) => a.bandName.localeCompare(b.bandName));
       } else {
@@ -61,12 +61,21 @@ export default {
 
     const toggleSortOrder = () => {
       sortOrder.value = sortOrder.value === 'asc' ? 'desc' : 'asc';
-    }
-    const addNewData = () => {
-      bands.push(newData);
-    }
+    };
 
-    return {bandsPerPage, totalPages, toggleSortOrder, sortOrder, addNewData};
+    const fetchBands = async () => {
+      try {
+        const response = await axios.get('http://localhost:3003/api/v1/bands'); // Replace with your backend endpoint
+        bands.value = response.data;
+        totalPages.value = Math.ceil(bands.value.length / imagesPerPage);
+      } catch (error) {
+        console.error(error);
+      }
+    };
+
+    onMounted(fetchBands);
+
+    return { bandsPerPage, totalPages, toggleSortOrder, sortOrder };
   },
 };
 </script>

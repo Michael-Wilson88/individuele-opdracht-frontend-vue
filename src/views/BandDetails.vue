@@ -1,5 +1,5 @@
 <template>
-  <div class="BandDetails">
+  <div class="BandDetails" v-if="band">
     <h1>{{ band.bandName }}</h1>
     <h2>City: {{ band.city }}</h2>
     <h3>Albums:</h3>
@@ -10,24 +10,25 @@
 </template>
 
 <script>
-import { ref, onMounted } from "vue";
+import { onMounted, ref } from "vue";
 import { useRoute } from "vue-router";
 
 export default {
   name: "BandDetails",
   setup() {
-    const band = ref({});
+    const band = ref(null);
     const route = useRoute();
 
-    onMounted(() => {
-      fetch(`http://localhost:3003/api/v1/bands/${route.params.id}`)
-          .then((response) => response.json())
-          .then((data) => {
-            band.value = data;
-          })
-          .catch((error) => {
-            console.log(error);
-          });
+    onMounted(async () => {
+      try {
+        const response = await fetch(`http://localhost:3003/api/v1/bands/${route.params.code}`);
+        console.log("API Route param:", route.params.code);
+        const data = await response.json();
+        console.log("API Response:", data);
+        band.value = data;
+      } catch (error) {
+        console.log(error);
+      }
     });
 
     return { band };
