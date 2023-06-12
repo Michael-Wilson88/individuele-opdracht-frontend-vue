@@ -7,14 +7,15 @@
       {{ sortOrder === 'asc' ? 'Sort Descending' : 'Sort Ascending' }}
     </button>
     <button @click="addNewData">Add New Data</button>
+
   </div>
   <div class="wrapper">
-    </div>
-    <div v-for="band in bandsPerPage" :key="band.bandName" class="image-container">
-      <router-link :to="{ name: 'BandDetails', params: { code: band.bandName }}" class="image-link">
-        <img :src="band.image" :alt="band.bandName + '-logo'" class="image">
-      </router-link>
-    </div>
+  </div>
+  <div v-for="band in bandsPerPage" :key="band.bandName" class="image-container">
+    <router-link :to="{ name: 'BandDetails', params: { code: band.bandName }}" class="image-link">
+      <img :src="band.image" :alt="band.bandName + '-logo'" class="image">
+    </router-link>
+  </div>
 </template>
 
 <script>
@@ -23,16 +24,6 @@ import {RouterLink, useRoute} from 'vue-router';
 import axios from 'axios';
 import Pagination from "@/components/Pagination.vue";
 
-const newData= {
-      bandName: "Primus",
-      city: "San Francisco",
-      genre: "Funk Metal",
-      image: "../img/logo-primus.png",
-      albums: [
-        { name: "Pork Soda" },
-        { name: "Frizzle Fry" }
-      ]
-    }
 
 export default {
   name: "Home",
@@ -59,6 +50,26 @@ export default {
       return sortedBands.slice(start, end);
     });
 
+    const addNewData = async () => {
+      const newData = {
+        bandName: "Primus",
+        city: "San Francisco",
+        genre: "Funk Metal",
+        image: "../img/logo-primus.png",
+        albums: [
+          {name: "Pork Soda"},
+          {name: "Frizzle Fry"}
+        ]
+      };
+
+      try {
+        const response = await axios.post('http://localhost:3003/api/v1/createBand', newData);
+        console.log(response.data);
+        await fetchBands();
+      } catch (error) {
+        console.error(error);
+      }
+    };
     const toggleSortOrder = () => {
       sortOrder.value = sortOrder.value === 'asc' ? 'desc' : 'asc';
     };
@@ -75,7 +86,7 @@ export default {
 
     onMounted(fetchBands);
 
-    return { bandsPerPage, totalPages, toggleSortOrder, sortOrder };
+    return {bandsPerPage, totalPages, toggleSortOrder, sortOrder, addNewData};
   },
 };
 </script>
@@ -92,7 +103,7 @@ export default {
 }
 
 button {
-  cursor: pointer ;
+  cursor: pointer;
 }
 
 .wrapper {
@@ -104,7 +115,7 @@ button {
 .image-container {
   float: contour;
   padding: 3px;
-  display:inline-block;
+  display: inline-block;
 }
 
 .image-container img {
