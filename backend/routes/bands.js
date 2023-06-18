@@ -1,4 +1,4 @@
-// const http = require("http");
+
 const db = require("../db.json");
 
 const express = require("express");
@@ -8,6 +8,7 @@ const bodyParser = require("body-parser");
 router.use(bodyParser.urlencoded({extended: false}));
 router.use(bodyParser.json());
 
+// Retrieves a band from the database by bandName
 router.get("/bands/:name", (req, res, next) => {
     res.setHeader("Content-Type", "application/json");
     const name = req.params.name;
@@ -15,6 +16,7 @@ router.get("/bands/:name", (req, res, next) => {
     res.send(JSON.stringify(band, null, 2));
 });
 
+// Retrieves all bands from the database
 router.get("/bands", (req, res, next) => {
     res.setHeader("Content-Type", "application/json");
     const bands = db.bands;
@@ -22,26 +24,14 @@ router.get("/bands", (req, res, next) => {
     res.send(JSON.stringify(bands, null, 2));
 });
 
+// Creates a new band
 router.post("/createBand", (req, res, next) => {
     const band = req.body;
     db.bands.push(band);
     res.send(JSON.stringify(band));
 });
 
-//Button for creating a band
-router.get("/newBand", (req, res, next) => {
-    console.log("Route:/ ,bands form");
-    res.send(
-        '<form action="/bands" method="post">' +
-        '<input type="text" name="bandName">' +
-        '<input type="text" name="city">' +
-        '<input type="text" name="genre">' +
-        '<input type="text" name="albums">' +
-        '<button type="submit">Create band</button>' +
-        "</form>"
-    );
-});
-
+// Updates a band by id
 router.put("/bands/:id", (req, res, next) => {
     const id = parseInt(req.params.id);
     const bandIndex = db.bands.findIndex((a) => a.id === id);
@@ -54,6 +44,7 @@ router.put("/bands/:id", (req, res, next) => {
     res.send(JSON.stringify(db.bands[bandIndex]));
 });
 
+// Deletes a band by id
 router.delete("/bands/:id", (req, res, next) => {
     const id = parseInt(req.params.id);
     const bandIndex = db.bands.findIndex((a) => a.id === id);
@@ -65,6 +56,7 @@ router.delete("/bands/:id", (req, res, next) => {
     res.send(JSON.stringify(deletedBand));
 });
 
+// Patches a band by id
 router.patch("/bands/:id", (req, res, next) => {
     const id = parseInt(req.params.id);
     const bandIndex = db.bands.findIndex((a) => a.id === id);
